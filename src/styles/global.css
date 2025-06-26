@@ -1,0 +1,37 @@
+/* Estilos base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f5f1ea;
+}
+
+/* Animaciones personalizadas */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* Efectos para componentes */
+.navbar-brand:hover {
+  animation: pulse 1s infinite alternate;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(93, 64, 55, 0.2) !important;
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #efebe9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8d6e63;
+  border-radius: 10px;
+}
