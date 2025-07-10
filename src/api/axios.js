@@ -1,9 +1,24 @@
 // src/services/axios.js
 import axios from 'axios';
 
+
+
+//API PERTENECIENTE aA LOGIN
+const apiAutentificacion = axios.create({
+  //baseURL: 'https://microservicio-autor.onrender.com/api',
+   baseURL: 'https://microservicioautentificacionatlaslibreri.onrender.com/api',
+  //baseURL: 'http://localhost:4000/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+
+
 //API PERTENECIENTE A LIBROS
 const api = axios.create({
-  baseURL: 'https://microserviciolibro-hws3.onrender.com/api',
+  //baseURL: 'https://microserviciolibro-hws3.onrender.com/api',
+    baseURL: 'https://localhost/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -11,7 +26,8 @@ const api = axios.create({
 
 //API PERTENECIENTE A  AUTORES
 const apiLibros = axios.create({
-  baseURL: 'https://microservicio-autor.onrender.com/api',
+  //baseURL: 'https://microservicio-autor.onrender.com/api',
+   baseURL: 'http://autorapi.somee.com/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -19,4 +35,4 @@ const apiLibros = axios.create({
 
 
 // Exportación nombrada
-export { api, apiLibros };
+export { api, apiLibros, apiAutentificacion };
