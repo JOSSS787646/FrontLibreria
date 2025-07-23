@@ -45,13 +45,13 @@ const apiLibros = axios.create({
   },
 });
 
-// ⬅️ Aquí agregamos el interceptor para incluir el token JWT en cada request
+// Interceptor para autores (CORREGIDO)
 apiLibros.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('tokenAutor'); // ✅ Token correcto
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log("Token enviado en cabecera:", token);
+      console.log("Token Autor enviado:", token);
     }
     return config;
   },
