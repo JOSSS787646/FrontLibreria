@@ -14,6 +14,10 @@ import {
   getRecoveryQuestions,
 } from "../api/AutentificacionService";
 
+
+import { generarToken, generarTokenLibros } from "../api/TokenService"
+
+
 export default function LoginRegistroModal({ show, handleClose, abrirRecuperar }) {
   const [modo, setModo] = useState("login");
   const [form, setForm] = useState({
@@ -48,20 +52,35 @@ export default function LoginRegistroModal({ show, handleClose, abrirRecuperar }
     e.preventDefault();
     setLoading(true);
     try {
-      if (modo === "login") {
-        const response = await login({
-          username: form.username,
-          password: form.password,
-        });
+     if (modo === "login") {
+  // Login normal
+  const response = await login({
+    username: form.username,
+    password: form.password,
+  });
 
-        localStorage.setItem("token", response.data.token);
-        setErrorLogin("");
-        setToast({
-          show: true,
-          message: `Bienvenido, ${form.username}!`,
-          isError: false,
-        });
-        handleClose();
+  localStorage.setItem("tokenAuth", response.data.token); // Token general
+
+  // Obtener y guardar token microservicio Autor
+  const tokenAutorResponse = await generarToken("autor");
+  localStorage.setItem('tokenAutor', tokenAutorResponse.accessToken);
+
+  // Obtener y guardar token microservicio Libro
+  const tokenLibroResponse = await generarTokenLibros("libro");
+  localStorage.setItem('tokenLibro', tokenLibroResponse.accessToken);
+
+  console.log("Token Autor guardado:", tokenAutorResponse.accessToken);
+  console.log("Token Libro guardado:", tokenLibroResponse.accessToken);
+
+  // Continúa con el flujo
+  setErrorLogin("");
+  setToast({
+    show: true,
+    message: `Bienvenido, ${form.username}!`,
+    isError: false,
+  });
+  handleClose();
+
       } else {
         const preguntaFinal =
           form.recoveryQuestion === "Otra"

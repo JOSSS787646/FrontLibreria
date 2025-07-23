@@ -30,3 +30,5 @@ export const resetPassword = async (data) => {
 export const getUserRecoveryQuestion = async (username) => {
   return await apiAutentificacion.get(`/auth/recovery-question/${username}`);
 };
+
+

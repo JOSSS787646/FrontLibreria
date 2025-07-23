@@ -18,20 +18,46 @@ const apiAutentificacion = axios.create({
 //API PERTENECIENTE A LIBROS
 const api = axios.create({
   //baseURL: 'https://microserviciolibro-hws3.onrender.com/api',
-    baseURL: 'https://localhost/api',
+    baseURL: 'https://microserviciolibrotoken.somee.com/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-//API PERTENECIENTE A  AUTORES
+// Para libros:
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('tokenLibro');  // <== token específico para libros
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      console.log("Token enviado para Libros:", token);
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// API PERTENECIENTE A AUTORES
 const apiLibros = axios.create({
-  //baseURL: 'https://microservicio-autor.onrender.com/api',
-   baseURL: 'http://autorapi.somee.com/api',
+  baseURL: 'https://microservicioautortoken.somee.com/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+// ⬅️ Aquí agregamos el interceptor para incluir el token JWT en cada request
+apiLibros.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      console.log("Token enviado en cabecera:", token);
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 
 
 // Exportación nombrada

@@ -24,3 +24,6 @@ export const buscarAutorPorNombre = (nombreCompleto) =>
   apiLibros.get(`LibroAutor/nombre`, {
     params: { nombreCompleto },
   });
+
+
+  

@@ -93,8 +93,8 @@ export default function Navbar({ onLibroAgregado, onBuscar }) {
               </button>
             </div>
 
-            {/* NUEVO: Búsqueda por ID */}
-            <div className="input-group me-3" style={{ width: '180px' }}>
+          {/* NUEVO: Búsqueda por ID */}
+            {/*<div className="input-group me-3" style={{ width: '180px' }}>
               <input
                 type="text"
                 className="form-control"
@@ -117,7 +117,7 @@ export default function Navbar({ onLibroAgregado, onBuscar }) {
               >
                 <i className="bi bi-search"></i>
               </button>
-            </div>
+            </div>*/}
 
             <button
               className="btn ms-3 d-flex align-items-center"
